@@ -4,11 +4,26 @@ function computerChoice(){
     return result;
 }
 
+/*Choice verification*/
+
 const playerChoiceVerified = (rps) => ['rock','paper','scissors'].includes(rps.toLowerCase()) ? true : false;
 
+const playerInputVerification = (inputType, playerInput) => typeof(playerInput) == inputType ? true : false;
+
+const roundCount = (numberOfRounds = 5) => {
+    let result = parseInt(numberOfRounds);
+    while(true){
+    if(!isNaN(result)) break;
+    result = parseInt(prompt("Please enter valid number"))
+    console.log(result)
+    }
+    return result
+}
+
+
+/*Round Play*/
 
 function playRound(playerSelection, computerSelection){
-    if(!playerChoiceVerified){return false}
     let ps = playerSelection.toLowerCase()
     if(ps === computerSelection) return `Tie`;
     const outcomes = {
@@ -25,14 +40,17 @@ function game(){
     let playerScore = 0
     ,computerScore = 0;
 
+
     /*Round Win conditions*/
-    const rounds = prompt("Hello! How may round would you like to play?")
-    const winRoundCount = rounds % 2 == 0 ? (rounds / 2) + 1 : Math.ceil(rounds/2);
+    let rounds = roundCount(prompt("Hello! How may round would you like to play?"))
+    let winRoundCount = rounds % 2 == 0 ? (rounds / 2) + 1 : Math.ceil(rounds/2);
     console.log(rounds, winRoundCount)
 
     /*Player name*/
-    const player = prompt("Enter your name!")
+
+    let player = prompt("Enter your name!")
     console.log(player)
+    
 
 
     for(let i = 1; i <=rounds && playerScore < winRoundCount && computerScore < winRoundCount && i; i++){
@@ -55,9 +73,6 @@ function game(){
 
 }
 
-/*game()*/
+game()
 
 
-const playerInputVerification = (inputType, playerInput) => typeof(playerInput) == inputType ? true : false;
-
-console.log(typeof(4), playerInputVerification('number', 5))
