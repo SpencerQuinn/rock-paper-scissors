@@ -17,7 +17,11 @@ h1{
     flex-direction: row;
     justify-content: center;
     gap: 3vw;
-    align-items: center;
+}
+
+.score-container{
+    align-items: flex-end;
+    gap: 10vw;
 }
 
 .tool-container{
@@ -34,3 +38,7 @@ h1{
     transition: box-shadow .07s;
 }
 
+.player-container, .computer-container{
+    display: flex;
+    flex-direction: column;
+}

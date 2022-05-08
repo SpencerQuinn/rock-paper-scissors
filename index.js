@@ -6,22 +6,33 @@ inputRoundSubmit.classList.add('round-count-sumbit')
 inputRoundSubmit.innerHTML = "Let's FIGHT!!!"
 const body = document.querySelector('body')
 const title = document.querySelector('.page-title')
+let playerName = ''
+console.log(playerName)
 
 const beginButton = document.querySelector('.start-button')
-console.log(beginButton)
+
 
 beginButton.addEventListener('click', function(e){
     beginButton.remove()
     body.insertBefore(inputRound, document.querySelector('.content-container'))
-    title.innerHTML = "How many rounds?"
+    title.innerHTML = "Who dare's challenge me?"
 })
 
 inputRound.addEventListener('input', handleInputChange)
+inputRoundSubmit.addEventListener('click', handleInputSubmit)
 
 function handleInputChange(e){
     body.insertBefore(inputRoundSubmit, document.querySelector('.content-container'))
     if(e.target.value == ""){inputRoundSubmit.remove()}
-    console.log(e.target.value.charCodeAt(0))
+    console.log(e.target.value)
+}
+
+function handleInputSubmit(e){
+    playerName = inputRound.value
+    console.log("Your name is ", playerName)
+    document.querySelector('.name').innerHTML = playerName
+    inputRound.remove();
+    inputRoundSubmit.remove()
 }
 
 function computerWeaponChoice(){
