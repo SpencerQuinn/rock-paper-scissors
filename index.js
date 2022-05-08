@@ -1,78 +1,85 @@
-function computerChoice(){
-    let options = ['rock', 'paper', 'scissors'];
-    let result = options[Math.floor(Math.random()*3)];
-    return result;
+const weaponButtons = [...document.querySelectorAll('.tool-container')]
+const inputRound = document.createElement('input')
+inputRound.classList.add('round-count')
+const inputRoundSubmit = document.createElement('button')
+inputRoundSubmit.classList.add('round-count-sumbit')
+inputRoundSubmit.innerHTML = "Let's FIGHT!!!"
+const body = document.querySelector('body')
+const title = document.querySelector('.page-title')
+
+const beginButton = document.querySelector('.start-button')
+console.log(beginButton)
+
+beginButton.addEventListener('click', function(e){
+    beginButton.remove()
+    body.insertBefore(inputRound, document.querySelector('.content-container'))
+    title.innerHTML = "How many rounds?"
+})
+
+inputRound.addEventListener('input', handleInputChange)
+
+function handleInputChange(e){
+    body.insertBefore(inputRoundSubmit, document.querySelector('.content-container'))
+    if(e.target.value == ""){inputRoundSubmit.remove()}
+    console.log(e.target.value.charCodeAt(0))
 }
 
-/*Choice verification*/
+function computerWeaponChoice(){
+    const choices = ['rock', 'paper', 'scissors'];
+    return choices[Math.floor(Math.random() * 3)]
+}
 
-const playerChoiceVerified = (rps) => ['rock','paper','scissors'].includes(rps.toLowerCase()) ? true : false;
+function roundWin(pc, cc){
+    const winScenarios = {
+        'rock': 'scissors',
+        'scissors': 'paper',
+        'paper': 'rock'
+    };
+    if(pc == cc) return "draw";
+    return winScenarios[pc] == cc ? true: false;
+}
 
-const playerInputVerification = (inputType, playerInput) => typeof(playerInput) == inputType ? true : false;
 
-const roundCount = (numberOfRounds = 5) => {
-    let result = parseInt(numberOfRounds);
-    while(true){
-    if(!isNaN(result)) break;
-    result = parseInt(prompt("Please enter valid number"))
-    console.log(result)
+
+const playerScore = document.querySelector('.player-score')
+const computerScore = document.querySelector('.computer-score')
+
+
+playerScore.addEventListener('transitionend', function(){
+    this.classList.remove('score-update')
+})
+
+function scoreUpdate(result){
+    let playerVal = parseInt(playerScore.innerHTML)
+    let computerVal = parseInt(computerScore.innerHTML)
+    if(result == 'draw'){
+        title.innerHTML = "Draw!"
     }
-    return result
-}
-
-
-/*Round Play*/
-
-function playRound(playerSelection, computerSelection){
-    let ps = playerSelection.toLowerCase()
-    if(ps === computerSelection) return `Tie`;
-    const outcomes = {
-        "rock": "scissors",
-        "paper": "rock",
-        "scissors": "paper"
-
+    else if(result){
+        playerScore.classList.add('score-update')
+        playerScore.innerHTML = `${playerVal+1}`
+        title.innerHTML = "Player wins"
+    }else{
+        computerScore.innerHTML = `${computerVal+1}`
+        title.innerHTML = "Computer wins"
     }
 
-   return computerSelection == outcomes[ps] ?  true: false;
+}
+function logChoice(e){
+    let compChoice = computerWeaponChoice();
+    let playerChoice = this.getAttribute('data-choice')
+    console.log(roundWin(playerChoice, compChoice))
+    scoreUpdate(roundWin(playerChoice, compChoice))
 }
 
-function game(){
-    let playerScore = 0
-    ,computerScore = 0;
 
 
-    /*Round Win conditions*/
-    let rounds = roundCount(prompt("Hello! How may round would you like to play?"))
-    let winRoundCount = rounds % 2 == 0 ? (rounds / 2) + 1 : Math.ceil(rounds/2);
-    console.log(rounds, winRoundCount)
-
-    /*Player name*/
-
-    let player = prompt("Enter your name!")
-    console.log(player)
-    
+weaponButtons.forEach((button) => button.addEventListener('click', logChoice))
 
 
-    for(let i = 1; i <=rounds && playerScore < winRoundCount && computerScore < winRoundCount && i; i++){
-        alert(`Score is ${player}: ${playerScore} Computer: ${computerScore}`)
-        let playerRoundChoice = prompt(`Round ${i}. Make your selection, ${player}`);
-        let computerRoundChoice = computerChoice();
-        let roundResult = playRound(playerRoundChoice, computerRoundChoice)
-        if(roundResult==="Tie"){
-            alert('Tie')
-        }else if(roundResult){
-            alert(`You won that round! ${player}'s ${playerRoundChoice} beat ${computerRoundChoice}`)
-            playerScore += 1
-        }else{
-            alert(`You lost that round! ${player}'s ${playerRoundChoice} lost to ${computerRoundChoice}`)
-            computerScore += 1
-        }
-    }
-    return playerScore == winRoundCount || playerScore > computerScore ? alert(`${player} wins!`): alert(`${player} lost!`)
-      
 
-}
 
-game()
+
+
 
 
