@@ -55,12 +55,20 @@ h1{
     }
 }
 
-.play-left{
+.fist-container-left.play-animate{
     animation: leftPlay .7s linear 0s 3 alternate both;
 }
 
-.play-right{
+.fist-container-right.play-animate{
     animation: rightPlay .7s linear 0s 3 alternate both;
+}
+
+.shoot-button{
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 3vh auto 3vh auto;
+    width: 30%;
+
 }
 
 img{
@@ -89,6 +97,11 @@ img{
     transform: scale(1);
     transition: all .07s;
     cursor: pointer;
+}
+
+.tool-container.selected{
+    border: 4px solid black;
+    box-shadow: 10px;
 }
 
 .score-update{
