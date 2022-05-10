@@ -11,6 +11,63 @@ h1{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.fist-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: blue;
+    height: 150px;
+    width: 50%;
+    margin-top: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fist-container-left, .fist-container-right{
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    width: 30%;
+    height: 50%;
+    background-color: aqua;
+    
+}
+@keyframes leftPlay{
+    50%{
+        transform: rotate(-45deg);
+
+    }
+
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rightPlay{
+    50%{
+        transform: rotate(45deg);
+
+    }
+
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.play-left{
+    animation: leftPlay .7s linear 0s 3 alternate both;
+}
+
+.play-right{
+    animation: rightPlay .7s linear 0s 3 alternate both;
+}
+
+img{
+    object-fit: contain;
+    height: fit-content;
+}
+
 .tool-list, .score-container{
     margin-top: 3vw;
     display: flex;
@@ -29,13 +86,22 @@ h1{
     box-sizing: border-box;
     width: 2vw;
     height: 2vw;
+    transform: scale(1);
     transition: all .07s;
+    cursor: pointer;
 }
 
 .score-update{
-    box-shadow: 0 0 10px black;
-    color: brown;
-    transition: box-shadow .07s;
+    
+    color: gold;
+    transform: scale(2);
+    transition: all .07s;
+}
+
+.computer-score-update{
+    color: gold;
+    transform: scale(2);
+    transition: all .07s;
 }
 
 .player-container, .computer-container{

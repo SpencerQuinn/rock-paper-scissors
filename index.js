@@ -1,3 +1,4 @@
+let gameinit = false
 const weaponButtons = [...document.querySelectorAll('.tool-container')]
 const inputRound = document.createElement('input')
 inputRound.classList.add('round-count')
@@ -33,6 +34,7 @@ function handleInputSubmit(e){
     document.querySelector('.name').innerHTML = playerName
     inputRound.remove();
     inputRoundSubmit.remove()
+    gameinit = true
 }
 
 function computerWeaponChoice(){
@@ -60,6 +62,10 @@ playerScore.addEventListener('transitionend', function(){
     this.classList.remove('score-update')
 })
 
+computerScore.addEventListener('transitionend', function(){
+    this.classList.remove('computer-score-update')
+})
+
 function scoreUpdate(result){
     let playerVal = parseInt(playerScore.innerHTML)
     let computerVal = parseInt(computerScore.innerHTML)
@@ -71,12 +77,14 @@ function scoreUpdate(result){
         playerScore.innerHTML = `${playerVal+1}`
         title.innerHTML = "Player wins"
     }else{
+        computerScore.classList.add('computer-score-update')
         computerScore.innerHTML = `${computerVal+1}`
         title.innerHTML = "Computer wins"
     }
 
 }
 function logChoice(e){
+    if(!gameinit) return
     let compChoice = computerWeaponChoice();
     let playerChoice = this.getAttribute('data-choice')
     console.log(roundWin(playerChoice, compChoice))
@@ -86,8 +94,6 @@ function logChoice(e){
 
 
 weaponButtons.forEach((button) => button.addEventListener('click', logChoice))
-
-
 
 
 
