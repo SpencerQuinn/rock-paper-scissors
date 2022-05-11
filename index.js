@@ -70,12 +70,21 @@ computerScore.addEventListener('transitionend', function(){
 })
 
 function shootInit(e){
+    if(playerChoice == '' || !gameinit) return 
     hands.forEach((hand) => hand.classList.add('play-animate'))
     console.log(this)
 }
 
+
 shootButton.addEventListener('click', shootInit)
 hands.forEach(hand => hand.addEventListener('animationend', (e) => e.target.classList.remove('play-animate')))
+hands[0].addEventListener('animationend',function(e){
+    let crc = computerWeaponChoice()
+    let result = roundWin(playerChoice, crc)
+    console.log(playerChoice, crc)
+    scoreUpdate(result)
+    console.log(result)
+})
 
 
 
@@ -100,11 +109,18 @@ function scoreUpdate(result){
 }
 function logChoice(e){
     if(!gameinit) return
+    let prevChoice = playerChoice
+    if(prevChoice != ''){
+    document.querySelector(`.tool-container[data-choice="${prevChoice}"`).classList.remove('selected')
+    }
+    this.classList.add('selected')
     playerChoice = this.getAttribute('data-choice')
     test.innerHTML = playerChoice
     console.log(playerChoice)
     
 }
+
+
 
 const test = document.querySelector('.test')
 
