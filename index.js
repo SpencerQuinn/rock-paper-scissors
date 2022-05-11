@@ -100,12 +100,14 @@ function scoreUpdate(result){
 }
 function logChoice(e){
     if(!gameinit) return
-    let compChoice = computerWeaponChoice();
     playerChoice = this.getAttribute('data-choice')
+    test.innerHTML = playerChoice
     console.log(playerChoice)
-    console.log(roundWin(playerChoice, compChoice))
-    scoreUpdate(roundWin(playerChoice, compChoice))
+    
 }
+
+const test = document.querySelector('.test')
+
 
 
 //Button assignments

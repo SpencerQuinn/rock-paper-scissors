@@ -19,7 +19,7 @@ h1{
     background-color: blue;
     height: 150px;
     width: 50%;
-    margin-top: 3vh;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -30,8 +30,7 @@ h1{
     box-sizing: border-box;
     width: 30%;
     height: 50%;
-    background-color: aqua;
-    
+
 }
 @keyframes leftPlay{
     50%{
@@ -71,9 +70,18 @@ h1{
 
 }
 
-img{
-    object-fit: contain;
-    height: fit-content;
+.fist-container-left > img{
+    width: 100%;
+    position: absolute;
+    left: 4vw;
+    transform: rotateY(180deg);
+}
+
+.fist-container-right > img{
+    right: 4vw;
+    width: 100%;
+    position: absolute;
+   
 }
 
 .tool-list, .score-container{
