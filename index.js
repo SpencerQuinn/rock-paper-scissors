@@ -111,10 +111,12 @@ function logChoice(e){
 //Button assignments
 weaponButtons.forEach((button) => button.addEventListener('click', logChoice))
 
-function isSelected(e) =>{
+function isSelected(e){
+    if(playerChoice != ''){
     let prevButt = document.querySelector('.tool-container.selected');
     prevButt.classList.remove('selected');
     this.classList.add('selected')
+    }
 }
 
 
