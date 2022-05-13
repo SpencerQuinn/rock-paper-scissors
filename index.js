@@ -72,6 +72,8 @@ computerScore.addEventListener('transitionend', function(){
 
 function shootInit(e){
     if(playerChoice == '' || !gameinit) return
+    document.querySelectorAll('.current-hand').forEach(item => item.classList.remove('current-hand'))
+    document.querySelectorAll('.fist-section > div > img[value="rock"]').forEach(item => item.classList.add('current-hand'))
     hands.forEach((hand) => hand.classList.add('play-animate'))
     console.log(this)
 }
@@ -82,6 +84,10 @@ hands.forEach(hand => hand.addEventListener('animationend', (e) => e.target.clas
 hands[0].addEventListener('animationend',function(e){
     let crc = computerWeaponChoice()
     let result = roundWin(playerChoice, crc)
+    document.querySelectorAll('.current-hand').forEach(item => item.classList.remove('current-hand'))
+    console.log(document.querySelector(`img[value=${playerChoice}]`))
+    document.querySelector(`.fist-container-left > img[value=${playerChoice}]`).classList.add('current-hand')
+    document.querySelector(`.fist-container-right > img[value=${crc}]`).classList.add('current-hand')
     console.log(playerChoice, crc)
     scoreUpdate(result)
     console.log(result)

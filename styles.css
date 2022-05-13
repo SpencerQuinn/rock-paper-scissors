@@ -74,13 +74,16 @@ h1{
     width: 100%;
     position: absolute;
     left: 4vw;
-    transform: rotateY(180deg);
+    opacity: 0;
+    transition: all .1s;
 }
 
 .fist-container-right > img{
     right: 4vw;
     width: 100%;
     position: absolute;
+    opacity: 0;
+    transition: all .1s;
    
 }
 
@@ -135,3 +138,14 @@ h1{
     display: flex;
     flex-direction: column;
 }
+
+img.current-hand{
+    opacity: 1;
+    transition: all .4s;
+}
+
+.player-hand-paper, .comp-hand-paper{
+    top: -5vh;
+}
+
+
