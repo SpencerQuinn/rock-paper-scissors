@@ -36,6 +36,7 @@ function handleInputSubmit(e){
     document.querySelector('.name').innerHTML = playerName
     inputRound.remove();
     inputRoundSubmit.remove()
+    title.innerHTML = (`${playerName} vs. Computer`)
     gameinit = true
 }
 
@@ -70,7 +71,7 @@ computerScore.addEventListener('transitionend', function(){
 })
 
 function shootInit(e){
-    if(playerChoice == '' || !gameinit) return 
+    if(playerChoice == '' || !gameinit) return
     hands.forEach((hand) => hand.classList.add('play-animate'))
     console.log(this)
 }
