@@ -38,6 +38,7 @@ function handleInputSubmit(e){
     inputRoundSubmit.remove()
     title.innerHTML = (`${playerName} vs. Computer`)
     gameinit = true
+    document.querySelector('.content-container').classList.remove('hidden')
 }
 
 function computerWeaponChoice(){
@@ -56,7 +57,7 @@ function roundWin(pc, cc){
 }
 
 
-const hands = Array.from(document.querySelectorAll('.fist-section > div'));
+const hands = Array.from(document.querySelectorAll('.hand'));
 const shootButton = document.querySelector('.shoot-button')
 const playerScore = document.querySelector('.player-score')
 const computerScore = document.querySelector('.computer-score')
@@ -122,7 +123,6 @@ function logChoice(e){
     }
     this.classList.add('selected')
     playerChoice = this.getAttribute('data-choice')
-    test.innerHTML = playerChoice
     console.log(playerChoice)
     
 }

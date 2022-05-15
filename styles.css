@@ -7,6 +7,13 @@ body{
 
 }
 
+.hidden{
+    opacity: 0;
+    transition: all 2s;
+}
+
+
+
 h1{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -18,20 +25,30 @@ h1{
     box-sizing: border-box;
     border: 1px solid black;
     height: 150px;
-    width: 50%;
-    margin-top: 50px;
+    width: 80%;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.fist-container-left, .fist-container-right{
+.hand{
     display: inline-block;
     position: relative;
     box-sizing: border-box;
-    width: 30%;
+    width: 100px;
     height: 50%;
 
 }
+
+.fist-container-right{
+    margin-left: auto;
+}
+
+.fist-container-left{
+    margin-right: auto;
+}
+
+
 @keyframes leftPlay{
     50%{
         transform: rotate(-45deg);
@@ -65,22 +82,24 @@ h1{
 .shoot-button{
     box-sizing: border-box;
     display: inline-block;
-    margin: 3vh auto 3vh auto;
+    margin: 10vh auto 3vh auto;
     width: 30%;
 
 }
 
 .fist-container-left > img{
-    width: 100%;
+    width: 250px;
     position: absolute;
-    left: 4vw;
+    top: -10px;
+    left: 0vw;
     opacity: 0;
     transition: all .1s;
 }
 
 .fist-container-right > img{
-    right: 4vw;
-    width: 100%;
+    right: 0vw;
+    top: -10px;
+    width: 250px;
     position: absolute;
     opacity: 0;
     transition: all .1s;
@@ -134,9 +153,12 @@ h1{
     transition: all .07s;
 }
 
-.player-container, .computer-container{
+.score{
     display: flex;
     flex-direction: column;
+    width: 150px;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 img.current-hand{
@@ -145,7 +167,7 @@ img.current-hand{
 }
 
 .player-hand-paper, .comp-hand-paper{
-    top: -5vh;
+    top: -10vh;
 }
 
 
